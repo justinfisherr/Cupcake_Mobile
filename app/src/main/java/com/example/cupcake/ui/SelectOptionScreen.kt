@@ -48,6 +48,7 @@ import com.example.cupcake.ui.components.FormattedPriceLabel
  */
 @Composable
 fun SelectOptionScreen(
+    nextButtonID: Int = R.string.next,
     subtotal: String,
     options: List<String>,
     onSelectionChanged: (String) -> Unit = {},
@@ -114,7 +115,7 @@ fun SelectOptionScreen(
                 enabled = selectedValue.isNotEmpty(),
                 onClick = onNextButtonClicked
             ) {
-                Text(stringResource(R.string.next))
+                Text(stringResource(nextButtonID))
             }
         }
     }

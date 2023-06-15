@@ -17,6 +17,7 @@ package com.example.cupcake
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,6 +46,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.cupcake.data.DataSource
 import com.example.cupcake.data.OrderUiState
+import com.example.cupcake.ui.CreditCardForm
 import com.example.cupcake.ui.OrderSummaryScreen
 import com.example.cupcake.ui.OrderViewModel
 import com.example.cupcake.ui.SelectOptionScreen
@@ -58,6 +60,7 @@ enum class CupcakeScreen(@StringRes val title: Int) {
     Flavor(title = R.string.choose_flavor),
     Pickup(title = R.string.choose_pickup_date),
     Payment(R.string.choose_payment),
+    CreditInfo(R.string.credit_info),
     Summary(title = R.string.order_summary)
 }
 
@@ -158,13 +161,26 @@ fun CupcakeApp(
             composable(route = CupcakeScreen.Payment.name) {
                 val context = LocalContext.current
                 SelectOptionScreen(
+                    nextButtonID = R.string.check_out,
                     subtotal = uiState.price,
-                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.CreditInfo.name) },
                     onCancelButtonClicked = {
                         cancelOrderAndNavigateToStart(viewModel, navController)
                     },
                     options = DataSource.paymentOptions.map { id -> context.resources.getString(id) },
                     onSelectionChanged = { viewModel.setPayment(it) },
+                    modifier = Modifier.fillMaxHeight()
+                )
+            }
+            composable(route = CupcakeScreen.CreditInfo.name) {
+                CreditCardForm(
+                    subtotal = uiState.price,
+                    onNextButtonClicked = {ccNum,ccExp,ccSec, shipping ->
+                        viewModel.setCreditInfo(ccNum,ccExp,ccSec,shipping)
+                        navController.navigate(CupcakeScreen.Summary.name) },
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
                     modifier = Modifier.fillMaxHeight()
                 )
             }

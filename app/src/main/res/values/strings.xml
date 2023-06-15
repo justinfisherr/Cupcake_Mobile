@@ -30,7 +30,15 @@
     <string name="special_flavor">Special Flavor</string>
     <string name="cancel">Cancel</string>
     <string name="next">Next</string>
+    <string name="credit_info">Credit Card Information</string>
     <string name="choose_pickup_date">Choose Pickup Date</string>
+    <string name="check_out">Check Out</string>
+    <string name="done">Done</string>
+    <string name="address">Shipping Address</string>
+    <string name="cc">Credit Card Number</string>
+    <string name="etc">ETC</string>
+    <string name="exp_date">Expiration Date</string>
+    <string name="security_code">Expiration Date</string>
     <string name="order_summary">Order Summary</string>
     <string name="send">Send Order to Another App</string>
     <string name="quantity">Quantity</string>

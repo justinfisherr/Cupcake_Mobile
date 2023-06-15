@@ -87,6 +87,17 @@ class OrderViewModel : ViewModel() {
             )
         }
     }
+    /**Sets [creditInfo]**/
+    fun setCreditInfo(ccNumber: String, ccExp: String, ccSec: String, shipAddress: String ) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                ccNumber = ccNumber,
+                ccExp = ccExp,
+                ccSecurityNum = ccSec,
+                shippingAddress = shipAddress
+            )
+        }
+    }
 
     /**
      * Reset the order state
@@ -119,7 +130,7 @@ class OrderViewModel : ViewModel() {
         val formatter = SimpleDateFormat("E MMM d", Locale.getDefault())
         val calendar = Calendar.getInstance()
         // add current date and the following 3 dates.
-        repeat(4) {
+        repeat(5) {
             dateOptions.add(formatter.format(calendar.time))
             calendar.add(Calendar.DATE, 1)
         }

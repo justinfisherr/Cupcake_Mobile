@@ -30,6 +30,10 @@ data class OrderUiState(
     val payment: String = "",
     /** Total price for the order */
     val price: String = "",
+    val ccNumber: String = "",
+    val ccExp: String = "",
+    val ccSecurityNum: String = "",
+    val shippingAddress: String = "",
     /** Available pickup dates for the order*/
     val pickupOptions: List<String> = listOf(),
 

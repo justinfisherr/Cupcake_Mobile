@@ -36,6 +36,7 @@ object DataSource {
     val paymentOptions = listOf(
         R.string.mastercard,
         R.string.visa,
-        R.string.american_express
+        R.string.american_express,
+        R.string.etc,
     )
 }

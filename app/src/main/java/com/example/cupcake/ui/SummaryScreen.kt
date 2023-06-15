@@ -74,7 +74,9 @@ fun OrderSummaryScreen(
         // Summary line 2: display selected flavor
         Pair(stringResource(R.string.flavor), orderUiState.flavor),
         // Summary line 3: display selected pickup date
-        Pair(stringResource(R.string.pickup_date), orderUiState.date)
+        Pair(stringResource(R.string.pickup_date), orderUiState.date),
+        // Summary line 3: display selected pickup date
+        Pair(stringResource(R.string.payment_type), orderUiState.payment)
     )
 
     Column(

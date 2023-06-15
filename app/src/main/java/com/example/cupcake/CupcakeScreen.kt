@@ -57,6 +57,7 @@ enum class CupcakeScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Flavor(title = R.string.choose_flavor),
     Pickup(title = R.string.choose_pickup_date),
+    Payment(R.string.choose_payment),
     Summary(title = R.string.order_summary)
 }
 
@@ -145,12 +146,25 @@ fun CupcakeApp(
             composable(route = CupcakeScreen.Pickup.name) {
                 SelectOptionScreen(
                     subtotal = uiState.price,
-                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Payment.name) },
                     onCancelButtonClicked = {
                         cancelOrderAndNavigateToStart(viewModel, navController)
                     },
                     options = uiState.pickupOptions,
                     onSelectionChanged = { viewModel.setDate(it) },
+                    modifier = Modifier.fillMaxHeight()
+                )
+            }
+            composable(route = CupcakeScreen.Payment.name) {
+                val context = LocalContext.current
+                SelectOptionScreen(
+                    subtotal = uiState.price,
+                    onNextButtonClicked = { navController.navigate(CupcakeScreen.Summary.name) },
+                    onCancelButtonClicked = {
+                        cancelOrderAndNavigateToStart(viewModel, navController)
+                    },
+                    options = DataSource.paymentOptions.map { id -> context.resources.getString(id) },
+                    onSelectionChanged = { viewModel.setPayment(it) },
                     modifier = Modifier.fillMaxHeight()
                 )
             }

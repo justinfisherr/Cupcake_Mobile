@@ -55,6 +55,16 @@ class OrderViewModel : ViewModel() {
             )
         }
     }
+    /**
+     * Set the payment method [paymentMethod] for this order's state.
+     */
+    fun setPayment(paymentType: String) {
+        _uiState.update { currentState ->
+            currentState.copy(
+                payment = paymentType
+            )
+        }
+    }
 
     /**
      * Set the [desiredFlavor] of cupcakes for this order's state.

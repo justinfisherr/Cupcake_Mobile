@@ -26,8 +26,11 @@ data class OrderUiState(
     val flavor: String = "",
     /** Selected date for pickup (such as "Jan 1") */
     val date: String = "",
+    /** Payment Method for Order */
+    val payment: String = "",
     /** Total price for the order */
     val price: String = "",
     /** Available pickup dates for the order*/
-    val pickupOptions: List<String> = listOf()
+    val pickupOptions: List<String> = listOf(),
+
 )
